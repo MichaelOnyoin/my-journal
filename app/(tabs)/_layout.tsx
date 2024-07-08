@@ -32,6 +32,40 @@ export default function TabLayout() {
           ),
         }}
       />
+      <Tabs.Screen
+      name="LoginScreen"
+      options={{
+        title: 'Login',
+        tabBarIcon: ({ color, focused }) => (
+          <TabBarIcon name={focused ? 'log-in' : 'log-in-outline'} color={color} />
+        ),
+      }}
+      />
+      <Tabs.Screen
+      name="signup"
+      options={{
+        title: 'Register',
+        tabBarIcon: ({ color, focused }) => (
+          <TabBarIcon name={focused ? 'create' : 'create-outline'} color={color} />
+          ),
+          }}
+      />
+      <Tabs.Screen
+      name="AddEntry"
+      options={{
+        title: 'New-Entry',
+        tabBarIcon: ({ color, focused }) => (
+         <TabBarIcon name={focused ? 'add-circle' : 'add-circle-outline'} color={color} />),
+         }}
+         />
+      <Tabs.Screen
+      name="view"
+      options={{
+        title: 'view',
+        tabBarIcon: ({ color, focused }) => (
+         <TabBarIcon name={focused ? 'logo-android' : 'logo-android'} color={color} />),
+         }}
+       />
     </Tabs>
   );
 }
