@@ -10,14 +10,14 @@ export const useFetchData = () => {
     const fetchData = async () => {
       const email = await AsyncStorage.getItem('email');
       try{
-      let { data:table, error } = await supabase.from('Journals').select("*").eq('email',email);
+      let { data:table, error } = await supabase.from('Journals').select("*").eq('user_email',email);
       if (error) {
         console.error('Error fetching journals:', error.message);
           return;
       }
       
 
-      //setLoading(false);
+      setLoading(false);
       if (table && table.length > 0) {
         setData(table);
       }

@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList,StyleSheet,Image } from 'react-native';
+import { View, FlatList,StyleSheet,Image } from 'react-native';
 import { supabase } from '../../backend/supabase';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
+import { Card, Title, Paragraph } from 'react-native-paper';
 
 export default function App() {
   const [journals, setjournals] = useState([]);
-  const PlaceholderImage = require('../../assets/images/background-image.png');
+  const PlaceholderImage = require('@/assets/images/partial-react-logo.png')
 
   useEffect(() => {
     const getjournals = async () => {
@@ -45,11 +46,14 @@ export default function App() {
         data={journals}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
-        <View>
-          <Text>{item.title}</Text>
-          <Text>{item.content}</Text>
-          <Text>{item.category}</Text> 
-        </View>
+          <Card style={{ margin: 10 }}>
+          <Card.Content>
+            <Title>{item.title}</Title>
+            <Paragraph>Category: {item.category}</Paragraph>
+            <Paragraph>Content: {item.content}</Paragraph>
+            
+          </Card.Content>
+        </Card>
         )}
         
         

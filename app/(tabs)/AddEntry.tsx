@@ -48,6 +48,7 @@ export default function AddEntryScreen  ()  {
           ]
           );
   }
+  
 }
         
   return (

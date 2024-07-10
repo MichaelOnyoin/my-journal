@@ -49,7 +49,7 @@ export default function Layout() {
         <Drawer.Screen
           name="Journals" // This is the name of the page and must match the url from root
           options={{
-            drawerLabel: 'My Journal',
+            drawerLabel: 'My Journals',
             title: 'overview',
             drawerIcon: ({color, focused}) => ( <Ionicons name={focused ? 'journal' : 'journal'} color={color} /> ),
             
@@ -59,7 +59,7 @@ export default function Layout() {
         name="display" // This is the name of the page and must match the url from root
         options={{
           drawerLabel: 'Display',
-          title: 'overview',
+          title: 'View your Journals',
           drawerIcon: ({color, focused}) => ( <Ionicons name={focused ? 'document' : 'document-attach'} color={color} /> ),
           }}
           />

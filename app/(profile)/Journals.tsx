@@ -1,16 +1,16 @@
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
-//import Profile from './_layout';
+
 import React, { useState, useEffect } from 'react';
-import { Image, View, Text, FlatList, StyleSheet } from 'react-native';
+import { Image, View, FlatList, StyleSheet } from 'react-native';
 import { supabase } from '../../backend/supabase';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Session } from '@supabase/supabase-js'
-import getProfile from '../(tabs)/LoginScreen'
+import { Card, Text, Title, Paragraph } from 'react-native-paper';
 import { Input } from '@rneui/themed';
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
-const PlaceholderImage = require('../../assets/images/background-image.png');
+const PlaceholderImage = require('@/assets/images/partial-react-logo.png')
 
 export default function App({ session }: { session: Session }) {
   const [journals, setjournals] = useState([]);
@@ -68,12 +68,15 @@ export default function App({ session }: { session: Session }) {
         
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-        <View>
-          <Text>{item.id}</Text>
-          <Text>{item.title}</Text>
-          <Text>{item.content}</Text>
-          <Text>{item.category}</Text> 
-        </View>
+          <Card style={{ margin: 10 }}>
+          <Card.Content>
+            <Title>{item.title}</Title>
+            <Paragraph>Category: {item.category}</Paragraph>
+            <Paragraph>Content: {item.content}</Paragraph>
+            
+          </Card.Content>
+        </Card>
+        
         )}
         
       />

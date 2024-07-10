@@ -7,27 +7,19 @@ import { router } from 'expo-router';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import AsyncStorage from '@react-native-async-storage/async-storage'
-//import signUpWithEmail from '../(tabs)/LoginScreen'
+
 
 export default function Account({ session }: { session: Session }) {
   const [loading, setLoading] = useState(true)
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  //const [avatarUrl, setAvatarUrl] = useState('')
-  // const Profile = async () => {
-  //   //const username = await AsyncStorage.getItem('username');
-  //   const email = await AsyncStorage.getItem('email');
   
-  //   console.log(email); // Output: johnDoe, johndoe@example.com
-  // };
 
   useEffect(() => {
     if (session) getProfile()
   }, [session])
    
-   //console.log('Usercase3  '+session?.user.id)
-
   async function getProfile() {
     try {
       setLoading(true)
@@ -37,8 +29,8 @@ export default function Account({ session }: { session: Session }) {
   
 
       const { data, error, status } = await supabase
-        .from('Credentials')
-        .select(`username, email, password,created_at`)
+        .from('Users')
+        .select(`username, email, password`)
         .eq('email', email)
         .single()
       if (error && status !== 406) {
@@ -49,7 +41,7 @@ export default function Account({ session }: { session: Session }) {
         setUsername(data.username)
         setEmail(data.email)
         setPassword(data.password)
-        //setAvatarUrl(data.avatar_url)
+        
       }
     } catch (error) {
       if (error instanceof Error) {
@@ -74,14 +66,14 @@ export default function Account({ session }: { session: Session }) {
       if (!session?.user) throw new Error('No user on the session!')
 
       const updates = {
-        id: session?.user.id,
+        
         username,
         email,
         password,
         created_at: new Date(),
       }
 
-      const { error } = await supabase.from('Credentials').upsert(updates)
+      const { error } = await supabase.from('Users').upsert(updates)
 
       if (error) {
         throw error
