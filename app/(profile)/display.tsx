@@ -22,7 +22,7 @@ const DataView = () => {
           <Card.Content>
           <ThemedText type='title'><Title>{item.title}</Title></ThemedText>
           <ThemedText type='subtitle'><Paragraph>Category: {item.category}</Paragraph></ThemedText>
-          <ThemedText type='title'><Paragraph>Content: {item.content}</Paragraph></ThemedText>
+          <ThemedText type='subtitle'><Paragraph>Content: {item.content}</Paragraph></ThemedText>
             
           </Card.Content>
         </Card>

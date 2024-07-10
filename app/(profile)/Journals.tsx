@@ -55,10 +55,12 @@ export default function App({ session }: { session: Session }) {
 
   return (
     <SafeAreaProvider>
-      <View
-      style={styles.container}>
+      <View>
         <View style={styles.imageContainer}>
-        <Image source={PlaceholderImage} style={styles.image} />
+        <Image source={PlaceholderImage} style={{
+        width: 100,
+        height: 100,
+        borderRadius: 18,}} />
         
       </View>
     <ThemedView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -94,11 +96,11 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     flex: 1,
-    paddingTop: 58,
+    paddingTop: 18,
   },
   image: {
-    width: 320,
-    height: 340,
+    width: 100,
+    height: 100,
     borderRadius: 18,
   },
 });

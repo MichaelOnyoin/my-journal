@@ -71,8 +71,8 @@ export default function addJournalScreen(){
        {/* <Input 
        label="Date"
        placeholder="Date" value={''} onChangeText={(text) => setDate(text)}/> */}
-      <Button title="Add" onPress={addJournal}
-       
+      <Button title="Add"  onPress={addJournal}
+       style={{borderRadius:12}}
        />
       </View>
       </View>

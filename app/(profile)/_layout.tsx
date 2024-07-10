@@ -71,6 +71,14 @@ export default function Layout() {
           drawerIcon: ({color, focused}) => ( <Ionicons name={focused ? 'add-circle' : 'add-circle-outline'} color={color} /> ),
           }}
           />
+          <Drawer.Screen
+          name="profile" // This is the name of the page and must match the url from root
+          options={{
+          drawerLabel: 'Test Profile',
+          title: 'Profiling',
+          drawerIcon: ({color, focused}) => ( <Ionicons name={focused ? 'albums' : 'albums-outline'} color={color} /> ),
+          }}
+          />
 
         
       </Drawer>

@@ -1,14 +1,17 @@
 import React, { useState } from 'react'
-import { Alert, StyleSheet, View, AppState } from 'react-native'
+import { Alert, StyleSheet, View, AppState , ScrollView, KeyboardAvoidingView} from 'react-native'
 import { supabase } from '../../backend/supabase'
 import { Button, Input } from '@rneui/themed'
 import { router } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage'
-
-// Tells Supabase Auth to continuously refresh the session automatically if
-// the app is in the foreground. When this is added, you will continue to receive
-// `onAuthStateChange` events with the `TOKEN_REFRESHED` or `SIGNED_OUT` event
-// if the user's session is terminated. This should only be registered once.
+import {
+  Layout,
+  Text,
+  TextInput,
+  Button as Button2,
+  useTheme,
+  themeColor,
+} from "react-native-rapi-ui";
 
 AppState.addEventListener('change', (state) => {
   if (state === 'active') {
@@ -52,6 +55,7 @@ export default function Auth() {
    }
 
   return (
+
     <View style={styles.container}>
       <View style={[styles.verticallySpaced, styles.mt20]}>
         
@@ -87,7 +91,7 @@ export default function Auth() {
         <Button title="Sign in" disabled={loading} onPress={() => signInWithEmail() } />
       </View>
       <View style={styles.verticallySpaced}>
-        <Button title="Sign up" disabled={loading} onPress={() => router.replace('./signup')} />
+        <Button title="Sign up"  disabled={loading} onPress={() => router.replace('./signup')} />
       </View>
       
     </View>
