@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Alert, StyleSheet, View, AppState , ScrollView, KeyboardAvoidingView} from 'react-native'
+import { Alert, StyleSheet, View, AppState , ScrollView, KeyboardAvoidingView, Image} from 'react-native'
 import { supabase } from '../../backend/supabase'
 import { Button, Input } from '@rneui/themed'
 import { router } from 'expo-router';
@@ -12,6 +12,8 @@ import {
   useTheme,
   themeColor,
 } from "react-native-rapi-ui";
+import { getTheme } from 'react-native-paper/lib/typescript/core/theming';
+import { ThemedView} from '@/components/ThemedView';
 
 AppState.addEventListener('change', (state) => {
   if (state === 'active') {
@@ -55,10 +57,41 @@ export default function Auth() {
    }
 
   return (
-
-    <View style={styles.container}>
-      <View style={[styles.verticallySpaced, styles.mt20]}>
-        
+  <KeyboardAvoidingView behavior="height" enabled style={{ flex: 1 }} >
+   <Layout>
+    <ScrollView contentContainerStyle={{
+            flexGrow: 1,
+          }}>
+      <ThemedView style={styles.titleContainer} >
+      <View
+            style={{
+              flex: 1,
+              justifyContent: "center",
+              alignItems: "center",
+              //backgroundColor:  themeColor.white100,
+            }}
+          >
+            <Image
+              resizeMode="contain"
+              style={{
+                height: 220,
+                width: 220,
+              }}
+              source={require("@/assets/images/login.png")}
+            />
+          </View></ThemedView>
+         <View style={styles.container}>
+         <View style={[styles.verticallySpaced, styles.mt20]}>
+            <Text
+              fontWeight="bold"
+              style={{
+                alignSelf: "center",
+                padding: 30,
+              }}
+              size="h3"
+            >
+              Login
+            </Text>
       <Input
           label="Username"
           leftIcon={{ type: 'font-awesome', name: 'user' }}
@@ -95,10 +128,19 @@ export default function Auth() {
       </View>
       
     </View>
+    
+   </ScrollView>
+   </Layout>
+  </KeyboardAvoidingView>
   );
 }
 
 const styles = StyleSheet.create({
+  titleContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
   container: {
     marginTop: 40,
     padding: 12,
