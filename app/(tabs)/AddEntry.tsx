@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-//import { Button, Input } from '@rneui/themed'
+
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { View, Text, TextInput} from 'react-native';
-//import { NavigationContainer } from '@react-navigation/native';
+
 import { Alert, StyleSheet, AppState } from 'react-native'
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { Image} from 'react-native';
@@ -24,7 +24,7 @@ export default function AddEntryScreen  ()  {
   const [content, setContent] = useState('');
   const [category, setCategory] = useState('');
   const [loading, setLoading] = useState(false)
-  //const db = getDb();
+  
 
   async function addEntry(){
     setLoading(true)

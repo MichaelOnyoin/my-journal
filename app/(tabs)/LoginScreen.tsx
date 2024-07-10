@@ -2,8 +2,9 @@ import React, { useState } from 'react'
 import { Alert, StyleSheet, View, AppState } from 'react-native'
 import { supabase } from '../../backend/supabase'
 import { Button, Input } from '@rneui/themed'
+import { router } from 'expo-router';
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
-//import { Session } from '@supabase/supabase-js'
 // Tells Supabase Auth to continuously refresh the session automatically if
 // the app is in the foreground. When this is added, you will continue to receive
 // `onAuthStateChange` events with the `TOKEN_REFRESHED` or `SIGNED_OUT` event
@@ -21,52 +22,39 @@ export default function Auth() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [username, setUsername] = useState('')
+  //const [user_id, setUserid] = useState('')
   const [loading, setLoading] = useState(false)
-
+  
   async function signInWithEmail() {
-    setLoading(true)
-    // const { error } = await supabase.auth.signInWithPassword({
-    //   email: email,
-    //   password: password,
-    // })
-
-    const { data: Credentials, error } = await supabase
-    .from('Credentials')
-    .select('email')
-    //select('*') future ref for profile
-    //.select('password')
-    .eq('password', password)
+     setLoading(true)
+   
+    const { data:{session}, error } = await supabase
+    .from('Users')
+    .select('*')
+    
+    .eq('email',email)
     .single()
-    //.eq('password', password? password : '')
-
     
+
 
     if (error) Alert.alert(error.message)
     setLoading(false)
-    //console.log(Credentials)
-    if (email=='email'|| password=='password') Alert.alert('Successful login!')
-      else Alert.alert('Incorrect email or password')
-
-  }
-
-  async function signUpWithEmail() {
-    setLoading(true)
     
-    const { data, error } = await supabase
-    .from('Credentials')
-    .insert([
-    { username:username, email: email, password: password,  },
-    ])
-    .select()
-
-    if (error) Alert.alert(error.message)
-    if (data) Alert.alert('You have been registered/ Now Please login!')
-    setLoading(false)
-  }
+    //   //withDelay
+     console.log(email)
+     
+    if(!error) Alert.alert('Successful login!');{
+     
+        AsyncStorage.setItem('email',email);
+        router.replace('../(profile)/Account')
+    }
+    
+   }
 
   return (
     <View style={styles.container}>
       <View style={[styles.verticallySpaced, styles.mt20]}>
+        
       <Input
           label="Username"
           leftIcon={{ type: 'font-awesome', name: 'user' }}
@@ -96,13 +84,14 @@ export default function Auth() {
         />
       </View>
       <View style={[styles.verticallySpaced, styles.mt20]}>
-        <Button title="Sign in" disabled={loading} onPress={() => signInWithEmail()} />
+        <Button title="Sign in" disabled={loading} onPress={() => signInWithEmail() } />
       </View>
       <View style={styles.verticallySpaced}>
-        <Button title="Sign up" disabled={loading} onPress={() => signUpWithEmail()} />
+        <Button title="Sign up" disabled={loading} onPress={() => router.replace('./signup')} />
       </View>
+      
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
