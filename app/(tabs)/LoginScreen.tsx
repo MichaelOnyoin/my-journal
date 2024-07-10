@@ -12,7 +12,7 @@ import {
   useTheme,
   themeColor,
 } from "react-native-rapi-ui";
-import { getTheme } from 'react-native-paper/lib/typescript/core/theming';
+
 import { ThemedView} from '@/components/ThemedView';
 
 AppState.addEventListener('change', (state) => {
@@ -51,7 +51,7 @@ export default function Auth() {
     if(!error) Alert.alert('Successful login!');{
      
         AsyncStorage.setItem('email',email);
-        router.replace('../(profile)/Account')
+        router.replace('../(profile)/profile')
     }
     
    }
@@ -124,7 +124,7 @@ export default function Auth() {
         <Button title="Sign in" disabled={loading} onPress={() => signInWithEmail() } />
       </View>
       <View style={styles.verticallySpaced}>
-        <Button title="Sign up"  disabled={loading} onPress={() => router.replace('./signup')} />
+        <Button title="Sign up" disabled={loading} onPress={() => router.replace('./signup')} />
       </View>
       
     </View>

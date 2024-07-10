@@ -8,6 +8,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Session } from '@supabase/supabase-js'
 import { Card,Title, Paragraph, Button } from 'react-native-paper';
 import { Input } from '@rneui/themed';
+//import {}
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export default function Profile(){
@@ -55,7 +56,7 @@ export default function Profile(){
            keyExtractor={(item) => item.id}
            renderItem={({ item }) => (
           <ThemedView style={{ flex: 1, justifyContent: 'center' }}>
-        <Card style={{ margin: 10 }}>
+          <Card style={{ margin: 10 }}>
           <Card.Content>
           <ThemedText type='title'><Title>User ID:{item.id}</Title></ThemedText>
           <ThemedText type='subtitle'><Paragraph>Username: {item.username}</Paragraph></ThemedText>
@@ -71,7 +72,7 @@ export default function Profile(){
             <Text>Update Profile</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.buttonContainer}>
-            <Text><Button onPress={() => router.replace('../(tabs)/index')}>Sign Out</Button></Text>
+            <Text><Button onPress={() => router.replace('/')}>Sign Out</Button></Text>
           </TouchableOpacity>
         </View>
       </View>

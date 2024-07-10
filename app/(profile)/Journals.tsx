@@ -14,17 +14,7 @@ const PlaceholderImage = require('@/assets/images/partial-react-logo.png')
 
 export default function App({ session }: { session: Session }) {
   const [journals, setjournals] = useState([]);
-  //const [loading, setLoading] = useState(true);
-   //const [user_id, setUserid] = useState(null);
- // const [user_id,setUserid]=useState('')
-   const Profile = async () => {
-    
-    const email = await AsyncStorage.getItem('email');
-    
-    //console.log('Journals email')
-    console.log(email); // Output: johnDoe, johndoe@example.com
-  };
-  Profile()
+
 
   useEffect(() => {
     const getjournals = async () => {
@@ -76,7 +66,7 @@ export default function App({ session }: { session: Session }) {
             <Paragraph>Category: {item.category}</Paragraph>
             <Paragraph>Content: {item.content}</Paragraph>
             
-          </Card.Content>
+            </Card.Content>
         </Card>
         
         )}
