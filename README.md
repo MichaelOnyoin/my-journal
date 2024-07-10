@@ -35,6 +35,47 @@ npm run reset-project
 
 This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
 
+
+Project Overview: Personal Journaling App
+Objective
+Create a mobile application and a backend service for personal journaling. Users
+should be able to write journal entries, categorize them, and view a summary of
+their entries.
+Documentation 
+Welcome to my-journal mobile app built using React-native and expo
+Step 1: Initialize App
+ npx create-expo-app  my-journal
+Step 2: Install Dependencies
+npm install 
+Step 3: Run app
+npx expo start
+Step 4: Download Expo Go on App Stores
+ 
+N.B: Scan the QR code above with Expo Go (Android) or the Camera app (iOS) 
+Step 5: Explore App
+
+
+
+Backend Development: Was built using Supabase (supabase.com) 
+
+import { createClient } from '@supabase/supabase-js'
+const supabaseUrl = 'https://ibqrwoqxvasaumckjnse.supabase.co'
+const supabaseKey = process.env.SUPABASE_KEY
+const supabase = createClient(supabaseUrl, supabaseKey)
+
+Users Table : 
+let { data: Users, error } = await supabase
+  .from('Users')
+  .select('id')
+Journals
+
+let { data: Journals, error } = await supabase
+  .from('Journals')
+  .select('id')
+
+
+
+
 ## Learn more
 
 To learn more about developing your project with Expo, look at the following resources:
