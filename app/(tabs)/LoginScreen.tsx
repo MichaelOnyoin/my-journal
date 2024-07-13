@@ -33,7 +33,7 @@ export default function Auth() {
   async function signInWithEmail() {
      setLoading(true)
    
-    const { data:{session}, error } = await supabase
+    const { data, error } = await supabase
     .from('Users')
     .select('*')
     
@@ -51,7 +51,7 @@ export default function Auth() {
     if(!error) Alert.alert('Successful login!');{
      
         AsyncStorage.setItem('email',email);
-        router.replace('../(profile)/profile')
+        router.replace('../(profile)/Account')
     }
     
    }
@@ -83,10 +83,10 @@ export default function Auth() {
          <View style={styles.container}>
          <View style={[styles.verticallySpaced, styles.mt20]}>
             <Text
-              fontWeight="bold"
+              //fontWeight="bold"
               style={{
                 alignSelf: "center",
-                padding: 30,
+                padding: 20,
               }}
               size="h3"
             >
@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   container: {
-    marginTop: 40,
+    marginTop: 5,
     padding: 12,
   },
   verticallySpaced: {

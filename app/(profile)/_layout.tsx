@@ -10,35 +10,35 @@ import { StyleSheet, View, Alert } from 'react-native'
 import { Button, Input } from '@rneui/themed'
 
 export default function Layout() {
-  const [session, setSession] = useState<Session | null>(null)
+  // const [session, setSession] = useState<Session | null>(null)
   
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session)
-    })
+  // useEffect(() => {
+  //   supabase.auth.getSession().then(({ data: { session } }) => {
+  //     setSession(session)
+  //   })
 
-    supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session)
-    })
-  }, [])
+  //   supabase.auth.onAuthStateChange((_event, session) => {
+  //     setSession(session)
+  //   })
+  // }, [])
   //console.log(session)
 
 
-  const Profile = async () => {
-    //const username = await AsyncStorage.getItem('username');
-    const email = await AsyncStorage.getItem('email');
-    console.log('Layout email')
-    console.log(email); // Output: johnDoe, johndoe@example.com
-  };
+  // const Profile = async () => {
+  //   //const username = await AsyncStorage.getItem('username');
+  //   const email = await AsyncStorage.getItem('email');
+  //   console.log('Layout email')
+  //   console.log(email); // Output: johnDoe, johndoe@example.com
+  // };
   
-  //console.log(Profile())
+  // console.log(Profile())
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       
       <Drawer>
         <Drawer.Screen
-          name="profile" // This is the name of the page and must match the url from root
+          name="Account" // This is the name of the page and must match the url from root
           
           options={{
             drawerLabel: 'My Profile',
@@ -71,14 +71,14 @@ export default function Layout() {
           drawerIcon: ({color, focused}) => ( <Ionicons name={focused ? 'add-circle' : 'add-circle-outline'} color={color} /> ),
           }}
           />
-          {/* {/* <Drawer.Screen
-          name="profile" // This is the name of the page and must match the url from root
+        <Drawer.Screen
+          name="signout" // This is the name of the page and must match the url from root
           options={{
           drawerLabel: 'Test Profile',
           title: 'Profiling',
           drawerIcon: ({color, focused}) => ( <Ionicons name={focused ? 'albums' : 'albums-outline'} color={color} /> ),
-          }} */}
-          
+          }} 
+          />
 
         
       </Drawer>

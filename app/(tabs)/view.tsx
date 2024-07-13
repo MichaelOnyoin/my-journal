@@ -37,9 +37,7 @@ export default function App() {
     <SafeAreaProvider>
       <View
       style={styles.container}>
-        <View style={styles.imageContainer}>
-        <Image source={PlaceholderImage} style={styles.image} />
-      </View>
+        
     <ThemedView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <ThemedText type='title'>Journal Entries</ThemedText>
       <FlatList
@@ -68,7 +66,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#25292e',
-    alignItems: 'center',
+    marginTop:70,
   },
   imageContainer: {
     flex: 1,

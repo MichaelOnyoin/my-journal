@@ -12,11 +12,11 @@ import { Input } from '@rneui/themed';
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export default function Profile(){
-    const [prof, setprof] = useState([]);
+    const [prof, setProf] = useState([]);
     
   
     useEffect(() => {
-      const getprof = async () => {
+      const getProf = async () => {
         try {
          
           const email = await AsyncStorage.getItem('email');
@@ -31,14 +31,14 @@ export default function Profile(){
           }
   
           if (prof && prof.length > 0) {
-            setprof(prof);
+            setProf(prof);
           }
         } catch (error) {
           console.error('Error fetching Journal Entries');
         }
       };
   
-      getprof();
+      getProf();
       
     }, []);
   
@@ -97,9 +97,9 @@ const styles = StyleSheet.create({
     marginTop: 130,
   },
   name: {
-    fontSize: 22,
+    //fontSize: 22,
     color: '#FFFFFF',
-    fontWeight: '600',
+    //fontWeight: '600',
   },
   body: {
     marginTop: 40,
@@ -111,12 +111,12 @@ const styles = StyleSheet.create({
   },
   
   info: {
-    fontSize: 16,
+    //fontSize: 16,
     color: '#00BFFF',
     marginTop: 10,
   },
   description: {
-    fontSize: 16,
+    //fontSize: 16,
     color: '#696969',
     marginTop: 10,
     textAlign: 'center',

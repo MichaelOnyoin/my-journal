@@ -16,7 +16,8 @@ export default function addJournalScreen(){
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
     const [loading, setLoading] = useState(false)
-    //const [date, setDate] = useState('')
+
+    //const [email, setEmail] = useState('')
     //const [image, setImage] = useState('')
     //category
     const [category, setCategory] = useState('')
@@ -26,13 +27,13 @@ export default function addJournalScreen(){
         const email = await AsyncStorage.getItem('email');
         const { data, error } = await supabase.from('Journals')
         .insert([ 
-            {title: title, category:category,content: content, user_email: email}
+            {title: title, category:category,content: content,date:new Date(), user_email: email}
             ])
         .select()
         .single()
         if (error) { 
             console.log(error)
-            } else {
+         } else {
                 console.log(data) 
                 Alert.alert('New Journal Added')
                 }
@@ -71,9 +72,7 @@ export default function addJournalScreen(){
        {/* <Input 
        label="Date"
        placeholder="Date" value={''} onChangeText={(text) => setDate(text)}/> */}
-      <Button title="Add"  onPress={addJournal}
-       style={{borderRadius:12}}
-       />
+      <Button title="Add"  onPress={ addJournal} />
       </View>
       </View>
     </ThemedView>
