@@ -8,7 +8,7 @@ import { router } from 'expo-router';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import AsyncStorage from '@react-native-async-storage/async-storage'
-
+import  Avatar  from '@/components/Avatar';
 
 export default function Account() {
   const [loading, setLoading] = useState(true)
@@ -99,6 +99,17 @@ export default function Account() {
 
   return (
     <View style={styles.container}>
+      <View>
+      {/* <Avatar
+        size={200}
+        url={avatarUrl}
+        onUpload={(url: string) => {
+          setAvatarUrl(url)
+          updateProfile({ username, website, avatar_url: url })
+        }}
+      /> */}
+      
+    </View>
       <Card style={{ margin: 10 }}>
       <View style={[styles.verticallySpaced, styles.mt20]}>
         
@@ -113,7 +124,7 @@ export default function Account() {
         {/* <Input label="email" value={email || ''} onChangeText={(text) => setEmail(text)} /> */}
       </View>
       <View style={styles.verticallySpaced}>
-        <Input label="Password" value={password || ''} onChangeText={(text) => setPassword(text)} />
+        <Input label="Password" value={password || ''}  onChangeText={(text) => setPassword(text)} />
       </View>
       </Card>
       <View style={[styles.verticallySpaced, styles.mt20]}>
