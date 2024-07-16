@@ -72,7 +72,7 @@ export default function Profile(){
             <Text>Update Profile</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.buttonContainer}>
-            <Text><Button onPress={() => router.replace('/')}>Sign Out</Button></Text>
+            <Text><Button onPress={() => router.replace('/')}>Sign Out </Button></Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     alignSelf: 'center',
     position: 'absolute',
-    marginTop: 130,
+    marginTop: 100,
   },
   name: {
     //fontSize: 22,

@@ -7,6 +7,8 @@ import ThemedCard from '@rneui/themed/dist/Card';
 import {ThemedText} from '@/components/ThemedText'
 import { MenuProvider } from 'react-native-popup-menu';
 import {MenuComponent} from '@/components/PopupMenu'
+import {Dropdown} from '@/components/Dropdown'
+import { ScrollView } from 'react-native-reanimated/lib/typescript/Animated';
 
 const DataView = () => {
   const { data, loading } = useFetchData();
@@ -16,9 +18,7 @@ const DataView = () => {
 
   return (
     <ThemedView>
-      <MenuProvider>
-            <MenuComponent/>
-          </MenuProvider>
+      
     <FlatList
       data={data}
       keyExtractor={(item) => item.id}
@@ -26,13 +26,16 @@ const DataView = () => {
 
         <Card style={{ margin: 10 }}>
          <Card.Content>
-          
+          <ThemedText>ID: {item.id}</ThemedText>
           <ThemedText type="title"><Title>Title: {item.title}</Title></ThemedText>
           <ThemedText type="subtitle"><Paragraph>Content: {item.content}</Paragraph></ThemedText>
           <ThemedText type="subtitle"><Paragraph>Category: {item.category}</Paragraph></ThemedText>
           <ThemedText type="subtitle"><Paragraph>Date: {item.date}</Paragraph></ThemedText>
           </Card.Content>
-          
+          {/* <Dropdown/> */}
+          <ScrollView>
+            <MenuComponent/>
+          </ScrollView>
          </Card>
       )}
     />

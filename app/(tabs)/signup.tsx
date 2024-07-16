@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
-import { Alert, StyleSheet, View, AppState } from 'react-native'
+import { Alert, StyleSheet, View, AppState,ScrollView, KeyboardAvoidingView, Image,Text } from 'react-native'
 import { supabase } from '../../backend/supabase'
 import { Button, Input } from '@rneui/themed'
+import { ThemedView } from '@/components/ThemedView'
+//import {Button as Button2} from 'react-native-rapi-ui'
 
 
 AppState.addEventListener('change', (state) => {
@@ -36,8 +38,43 @@ export default function Auth() {
   }
 
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView behavior="height" enabled style={{ flex: 1 }} >
+   
+    <ScrollView contentContainerStyle={{
+            flexGrow: 1,
+          }}>
+      <View
+            style={{
+              flex: 1,
+              justifyContent: "center",
+              alignItems: "center",
+              //backgroundColor:  themeColor.white100,
+            }}
+          >
+            <Image
+              resizeMode="contain"
+              style={{
+                height: 220,
+                width: 220,
+                borderTopLeftRadius:15,
+                borderTopRightRadius:15,
+              }}
+              source={require("@/assets/images/register.png")}
+            />
+          </View>
+    <ThemedView style={styles.container}>
       <View style={[styles.verticallySpaced, styles.mt20]}>
+      <Text
+              
+              style={{
+                alignSelf: "center",
+                padding: 20,
+                fontSize:30,
+              }}
+              
+            >
+              Sign Up
+            </Text>
       <Input
           label="Username"
           leftIcon={{ type: 'font-awesome', name: 'user' }}
@@ -68,9 +105,12 @@ export default function Auth() {
       </View>
       
       <View style={styles.verticallySpaced}>
-        <Button title="Sign up" disabled={loading} onPress={() => signUpWithEmail()} />
+        <Button title="Sign up" disabled={loading} style={styles.btn} onPress={() => signUpWithEmail()} />
       </View>
-    </View>
+    </ThemedView>
+    
+    </ScrollView>
+    </KeyboardAvoidingView>
   )
 }
 
@@ -87,4 +127,7 @@ const styles = StyleSheet.create({
   mt20: {
     marginTop: 20,
   },
+  btn:{
+    borderRadius:10,
+  }
 })

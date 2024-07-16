@@ -1,17 +1,10 @@
 import React, { useState } from 'react'
-import { Alert, StyleSheet, View, AppState , ScrollView, KeyboardAvoidingView, Image} from 'react-native'
+import { Alert, StyleSheet, View, AppState , ScrollView, KeyboardAvoidingView, Image,Text} from 'react-native'
 import { supabase } from '../../backend/supabase'
 import { Button, Input } from '@rneui/themed'
 import { router } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import {
-  Layout,
-  Text,
-  TextInput,
-  Button as Button2,
-  useTheme,
-  themeColor,
-} from "react-native-rapi-ui";
+
 
 import { ThemedView} from '@/components/ThemedView';
 
@@ -58,7 +51,7 @@ export default function Auth() {
 
   return (
   <KeyboardAvoidingView behavior="height" enabled style={{ flex: 1 }} >
-   <Layout>
+   
     <ScrollView contentContainerStyle={{
             flexGrow: 1,
           }}>
@@ -83,12 +76,13 @@ export default function Auth() {
          <View style={styles.container}>
          <View style={[styles.verticallySpaced, styles.mt20]}>
             <Text
-              //fontWeight="bold"
+              
               style={{
                 alignSelf: "center",
                 padding: 20,
+                fontSize:30,
               }}
-              size="h3"
+              
             >
               Login
             </Text>
@@ -121,16 +115,16 @@ export default function Auth() {
         />
       </View>
       <View style={[styles.verticallySpaced, styles.mt20]}>
-        <Button title="Sign in" disabled={loading} onPress={() => signInWithEmail() } />
+        <Button title="Sign in" disabled={loading} style={styles.btn} onPress={() => signInWithEmail() } />
       </View>
       <View style={styles.verticallySpaced}>
-        <Button title="Sign up" disabled={loading} onPress={() => router.replace('./signup')} />
+        <Button title="Sign up" disabled={loading} style={styles.btn} onPress={() => router.replace('./signup')} />
       </View>
       
     </View>
     
    </ScrollView>
-   </Layout>
+   
   </KeyboardAvoidingView>
   );
 }
@@ -153,4 +147,7 @@ const styles = StyleSheet.create({
   mt20: {
     marginTop: 20,
   },
+  btn:{
+    borderRadius:10,
+  }
 })

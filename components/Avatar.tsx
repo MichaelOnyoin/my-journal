@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import { supabase } from '@/backend/supabase'
-import { StyleSheet, View, Alert, Image, Button } from 'react-native'
+import { StyleSheet, View, Alert, Image, Button,TouchableOpacity } from 'react-native'
 import * as ImagePicker from 'expo-image-picker'
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 interface Props {
   size: number
@@ -100,11 +101,24 @@ export default function Avatar({ url, size = 150, onUpload }: Props) {
         <View style={[avatarSize, styles.avatar, styles.noImage]} />
       )}
       <View>
+      {/* <TouchableOpacity style={styles.buttonContainer}><Text> */}
+      <Ionicons
+      name="cloud-upload-outline"
+      size={30}
+      //title={uploading ? 'Uploading ...' : 'Uploaded'}
+      onPress={uploadAvatar}
+      //color="black"
+      //style={styles.Icon}
+      />
+           
+      
         <Button
           title={uploading ? 'Uploading ...' : 'Upload'}
           onPress={uploadAvatar}
           disabled={uploading}
+          
         />
+        {/*</Text </TouchableOpacity> */}
       </View>
     </View>
   )
@@ -118,13 +132,39 @@ const styles = StyleSheet.create({
   },
   image: {
     objectFit: 'cover',
-    paddingTop: 0,
+    paddingTop: 10,
+    alignSelf:'center',
+    borderRadius: 63,
+    borderWidth: 4,
+    borderColor: 'white',
+    marginTop: 40,
+    
+    
   },
   noImage: {
     backgroundColor: '#333',
     borderWidth: 1,
     borderStyle: 'solid',
+    
     borderColor: 'rgb(200, 200, 200)',
-    borderRadius: 5,
+    
   },
+  buttonContainer: {
+    marginTop: 10,
+    height: 45,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 20,
+    width: 250,
+    borderRadius: 30,
+    backgroundColor: '#00BFFF',
+    //paddingBottom:20,
+  },
+  Icon:{
+    width: 30,
+    height: 30,
+
+  }
+
 })

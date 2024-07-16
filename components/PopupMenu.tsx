@@ -7,8 +7,6 @@ import {
   // import { useState, useEffect } from 'react';
   // import { supabase } from '../backend/supabase';
   // import AsyncStorage from '@react-native-async-storage/async-storage'
-  
-
 
 import {View,Text,ScrollView} from 'react-native'
   export const MenuComponent = () => (

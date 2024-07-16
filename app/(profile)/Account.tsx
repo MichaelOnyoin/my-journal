@@ -1,20 +1,22 @@
 import { useState, useEffect } from 'react'
 import { supabase } from '@/backend/supabase'
-import { StyleSheet, View, Alert,FlatList,Text } from 'react-native'
+import { StyleSheet, View, Alert,FlatList,Text,ScrollView } from 'react-native'
 import { Card, Title, Paragraph } from 'react-native-paper';
 import { Button, Input } from '@rneui/themed'
-import { Session } from '@supabase/supabase-js'
+
 import { router } from 'expo-router';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+// import { ThemedText } from '@/components/ThemedText';
+// import { ThemedView } from '@/components/ThemedView';
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import  Avatar  from '@/components/Avatar';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 export default function Account() {
   const [loading, setLoading] = useState(true)
   const [username, setUsername] = useState('')
   //const [email, setEmail] = await AsyncStorage.getItem('email')
   const [password, setPassword] = useState('')
+  const [avatarUrl, setAvatarUrl] = useState('')
 
   
   //print()
@@ -38,7 +40,7 @@ export default function Account() {
       
       const { data, error, status } = await supabase
         .from('Users')
-        .select(`username, email, password`)
+        .select(`username, email, password, avatar_url`)
         .eq('email', email)
         .single()
       if (error && status !== 406) {
@@ -47,6 +49,7 @@ export default function Account() {
 
       if (data) {
         setUsername(data.username)
+        setAvatarUrl(data.avatar_url)
         //setEmail(data.email)
         email
         setPassword(data.password)
@@ -66,10 +69,12 @@ export default function Account() {
     username,
     //email,
     password,
+    avatar_url,
   }: {
     username: string
     //email: string
     password: string
+    avatar_url: string
   }) {
     try {
       setLoading(true)
@@ -80,10 +85,11 @@ export default function Account() {
         username,
         //email,
         password,
+        avatar_url,
         created_at: new Date(),
       }
 
-      const { error } = await supabase.from('Users').update({ 'username': username }).eq('email',email).select()
+      const { error } = await supabase.from('Users').update({ 'username': username,'password':password,'avatar_url':avatar_url }).eq('email',email).select()
 
       if (error) {
         throw error
@@ -92,24 +98,33 @@ export default function Account() {
       if (error instanceof Error) {
         Alert.alert(error.message)
       }
+      if(!error){Alert.alert('Profile Updated!');}
     } finally {
       setLoading(false)
     }
   }
 
   return (
-    <View style={styles.container}>
-      <View>
-      {/* <Avatar
-        size={200}
-        url={avatarUrl}
-        onUpload={(url: string) => {
-          setAvatarUrl(url)
-          updateProfile({ username, website, avatar_url: url })
-        }}
-      /> */}
+    <ScrollView contentContainerStyle={{
+      flexGrow: 1,
+    }}>
+      <View style={styles.header}>
+        <View>
+         <Avatar
+            size={200}
+            url={avatarUrl}
+            
+            onUpload={(url: string) => {
+              setAvatarUrl(url)
+              updateProfile({ username, password, avatar_url: url })
+            }}
+          />
       
-    </View>
+        </View>
+
+      </View>
+    <View style={styles.container}>
+      
       <Card style={{ margin: 10 }}>
       <View style={[styles.verticallySpaced, styles.mt20]}>
         
@@ -130,13 +145,13 @@ export default function Account() {
       <View style={[styles.verticallySpaced, styles.mt20]}>
         <Button
           title={loading ? 'Loading ...' : 'Update'}
-          onPress={() => updateProfile({ username, password })}
+          onPress={() => updateProfile({ username, password,avatar_url: avatarUrl })}
           disabled={loading}
         />
       </View>
 
       <View style={styles.verticallySpaced}>
-        <Button title="Sign Out" onPress={() => supabase.auth.signOut()} />
+        <Button title="Sign Out" style={styles.btn} onPress={() => supabase.auth.refreshSession()} />
       </View>
       <View style={styles.verticallySpaced}>
         <Button title="Sign Out2"  onPress={() => router.replace('../(tabs)/')} />
@@ -160,6 +175,7 @@ export default function Account() {
       />
     </ThemedView> */}
     </View>
+    </ScrollView>
 
     
   )
@@ -169,6 +185,11 @@ const styles = StyleSheet.create({
   container: {
     marginTop: 40,
     padding: 12,
+    
+  },
+  header: {
+    backgroundColor: '#00BFFF',
+    height: 200,
   },
   verticallySpaced: {
     paddingTop: 4,
@@ -178,4 +199,7 @@ const styles = StyleSheet.create({
   mt20: {
     marginTop: 20,
   },
+  btn:{
+    borderRadius:30,
+  }
 })

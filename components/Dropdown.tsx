@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import RNPickerSelect from 'react-native-picker-select';
 import { View, Text } from 'react-native';
 
-const Dropdown = () => {
+export const Dropdown = () => {
   const [selectedValue, setSelectedValue] = useState(null);
 
   const placeholder = {
@@ -11,14 +11,14 @@ const Dropdown = () => {
   };
 
   const options = [
-    { label: 'Option 1', value: 'option1' },
-    { label: 'Option 2', value: 'option2' },
-    { label: 'Option 3', value: 'option3' },
+    { label: 'Edit', value: 'edited' },
+    { label: 'Delete', value: 'deleted' },
+    // { label: 'Option 3', value: 'option3' },
   ];
 
   return (
     <View>
-      <Text>Select an option:</Text>
+      <Text>Select:</Text>
       <RNPickerSelect
         placeholder={placeholder}
         items={options}
