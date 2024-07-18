@@ -24,37 +24,24 @@ export default function Auth() {
 
   async function signInWithEmail() {
     setLoading(true)
-    let {
-        data: { session },
-        error,
-      } = await supabase
-    .from('Users')
-    .select('*')
-    
-    .eq('email',email)
-    .single()
+    const { error } = await supabase.auth.signInWithPassword({
+      email: email,
+      password: password,
+    })
 
-   if (error) Alert.alert(error.message)
+    if (error) Alert.alert(error.message)
     setLoading(false)
-
-   if(!error) Alert.alert('Successful login!');{
-     
-    //AsyncStorage.setItem('email',email);
-    router.replace('/')
-   }
   }
-   
 
   async function signUpWithEmail() {
     setLoading(true)
     const {
       data: { session },
       error,
-    } = await supabase
-    .from('Users')
-    .select('*')
-    .eq('email',email)
-    .single()
+    } = await supabase.auth.signUp({
+      email: email,
+      password: password,
+    })
 
     if (error) Alert.alert(error.message)
     if (!session) Alert.alert('Please check your inbox for email verification!')

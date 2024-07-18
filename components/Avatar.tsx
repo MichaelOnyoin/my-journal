@@ -105,10 +105,10 @@ export default function Avatar({ url, size = 150, onUpload }: Props) {
       <Ionicons
       name="cloud-upload-outline"
       size={30}
+      marginLeft={70}
       //title={uploading ? 'Uploading ...' : 'Uploaded'}
       onPress={uploadAvatar}
-      //color="black"
-      //style={styles.Icon}
+      
       />
            
       

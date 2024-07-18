@@ -10,19 +10,19 @@ import {
 
 import {View,Text,ScrollView} from 'react-native'
   export const MenuComponent = () => (
-    //const [data, setData] = useState('');
+    //const [del, setData] = useState('');
 
     // useEffect(() => {
     //   const DelData = async () => {
     //     const email = await AsyncStorage.getItem('email');
     //     try{
-    //     const { data, error } = await supabase.from('Journals')
+    //     const { del, error } = await supabase.from('Journals')
     //     .delete()
-    //     .eq('email',email)
+    //     .eq('id',item.id)
     //     .single();
 
-    //     if (error) {
-    //       console.error('Error fetching journals:', error.message);
+    //     if (!error) {
+    //       console.error('Journal deleted:', error.message);
     //         return;
     //     }
     //      }catch (error) {

@@ -16,8 +16,6 @@ export default function addJournalScreen(){
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
     const [loading, setLoading] = useState(false)
-
-    //const [email, setEmail] = useState('')
     //const [image, setImage] = useState('')
     //category
     const [category, setCategory] = useState('')
@@ -47,8 +45,8 @@ export default function addJournalScreen(){
             headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
             headerImage={
               <Image
-                source={require('@/assets/images/partial-react-logo.png')}
-                style={{ width: 100, height: 100 }}
+                source={require('@/assets/images/jess-unsplash.png')}
+                style={{ width: 405, height: 320 }}
               />
             }
             >
@@ -72,7 +70,7 @@ export default function addJournalScreen(){
        {/* <Input 
        label="Date"
        placeholder="Date" value={''} onChangeText={(text) => setDate(text)}/> */}
-      <Button title="Add"  onPress={ addJournal} />
+      <Button title="Add" onPress={ addJournal} />
       </View>
       </View>
     </ThemedView>

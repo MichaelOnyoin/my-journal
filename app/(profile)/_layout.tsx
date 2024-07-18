@@ -50,7 +50,7 @@ export default function Layout() {
           name="Journals" // This is the name of the page and must match the url from root
           options={{
             drawerLabel: 'My Journals',
-            title: 'overview',
+            //title: 'overview',
             drawerIcon: ({color, focused}) => ( <Ionicons name={focused ? 'journal' : 'journal'} color={color} /> ),
             
           }}
@@ -72,9 +72,9 @@ export default function Layout() {
           }}
           />
         <Drawer.Screen
-          name="signout" // This is the name of the page and must match the url from root
+          name="display2" // This is the name of the page and must match the url from root
           options={{
-          drawerLabel: 'Test Profile',
+          drawerLabel: '2ndDisplay',
           title: 'Profiling',
           drawerIcon: ({color, focused}) => ( <Ionicons name={focused ? 'albums' : 'albums-outline'} color={color} /> ),
           }} 
