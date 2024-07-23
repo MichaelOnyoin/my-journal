@@ -6,13 +6,16 @@ import { supabase } from '@/backend/supabase';
 import { Input } from '@rneui/themed'
 
 
-export const EditData=(item: any)=> {
+export default function EditData(item: any){
     const { title, content, category } = item;
-  
-    // Create a new state to store the updated values
     const [updatedTitle, setUpdatedTitle] = useState(title);
     const [updatedContent, setUpdatedContent] = useState(content);
-    const [updatedCategory, setUpdatedCategory] = useState(category);
+    const [updatedCategory, setUpdatedCategory] = useState(category)
+
+    
+  
+    // Create a new state to store the updated values
+    ;
   
     // Create a function to handle the update
     
@@ -25,6 +28,7 @@ export const EditData=(item: any)=> {
             content: updatedContent,
             category: updatedCategory,
           });
+          
   
         if (error) {
           console.log(error.message);

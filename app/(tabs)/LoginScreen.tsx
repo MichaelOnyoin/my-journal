@@ -4,9 +4,8 @@ import { supabase } from '../../backend/supabase'
 import { Button, Input } from '@rneui/themed'
 import { router } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage'
-
-
 import { ThemedView} from '@/components/ThemedView';
+import { ThemedText } from '@/components/ThemedText';
 
 AppState.addEventListener('change', (state) => {
   if (state === 'active') {
@@ -31,6 +30,7 @@ export default function Auth() {
     .select('*')
     
     .eq('email',email)
+    //.eq('password',password)
     .single()
     
 
@@ -75,7 +75,7 @@ export default function Auth() {
           </View></ThemedView>
          <View style={styles.container}>
          <View style={[styles.verticallySpaced, styles.mt20]}>
-            <Text
+            {/* <Text
               
               style={{
                 alignSelf: "center",
@@ -85,7 +85,8 @@ export default function Auth() {
               
             >
               Login
-            </Text>
+            </Text> */}
+            <ThemedText type="title">Login</ThemedText>
       <Input
           label="Username"
           leftIcon={{ type: 'font-awesome', name: 'user' }}

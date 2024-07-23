@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, ActivityIndicator, FlatList,ScrollView,Alert, Modal } from 'react-native';
+import { View, ActivityIndicator, FlatList,ScrollView,Alert, Modal,StyleSheet,TextInput } from 'react-native';
 import { Card, Text, Title, Paragraph} from 'react-native-paper';
 import { useFetchData } from './useFetchData';
 import { ThemedView } from '@/components/ThemedView';
@@ -9,25 +9,26 @@ import { Input, Button } from '@rneui/themed'
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useState, useEffect } from 'react';
 import { supabase } from '@/backend/supabase';
-
-import {EditData} from './editJournal'
-
+import AsyncStorage from '@react-native-async-storage/async-storage'
+//import EditData from './editJournal'
+import { router } from 'expo-router';
 
 const DataView = () => {
+  
   const { data, loading } = useFetchData();
   if (loading) return <ActivityIndicator animating={true} size="large" />;
  
   
  
   async function DelData(item:any){
+    //AsyncStorage.setItem('id',item.id);
     try{
     const {data, error } = await supabase
     .from('Journals')
     .delete()
-    .eq('id', item.id)
+    .eq('id', item.id.toString())
     .single()
-    
-
+  
     if (error) {
       console.log(error.message)
       }
@@ -36,64 +37,19 @@ const DataView = () => {
           
           "Journal Entry Deleted ",
         );
-       
+       useFetchData()
       }
     }catch(error){console.log('Errored');}  
 
   }
 
-  // async function EditData(item: any) {
-  //   const { title, content, category } = item;
-     
-    
-  //   // Create a function to handle the update
-  //   async function handleUpdate() {
-  //     try {
-  //       const { data, error } = await supabase
-  //         .from('Journals')
-  //         .update({
-  //           'title':title,//: updatedTitle,
-  //           'content': content,
-  //           'category': category,
-  //         })
-  //         .eq('id',item.id).select();
+  async function Editer(item:any){
+    //const { title, content, category }=item
+    AsyncStorage.setItem('id',item.id.toString());
+    //AsyncStorage.setItem('item',item);
+    router.push('/update')
   
-  //       if (error) {
-  //         console.log(error.message);
-  //       } else {
-  //         Alert.alert("Update Successful", "Journal entry updated successfully");
-  //         // Refresh the data
-  //         // fetchData(); // Call the fetchData function to refresh the data
-  //       }
-  //     } catch (error) {
-  //       //console.log(error.message);
-  //     }
-  //   }
-  //   // Return a modal or a form to edit the journal entry
-  //   return (
-  //     <Modal>
-  //       <View>
-  //         <Text>Edit Journal Entry</Text>
-  //         <Input
-  //           label="Title"
-  //           value={item.title}
-  //           //onChangeText={(text) => setUpdatedTitle(text)}
-  //         />
-  //         <Input
-  //           label="Content"
-  //           value={item.content}
-  //           //onChangeText={(text) => setUpdatedContent(text)}
-  //         />
-  //         <Input
-  //           label="Category"
-  //           value={item.category}
-  //           //onChangeText={(text) => setUpdatedCategory(text)}
-  //         />
-  //         <Button title="Update" onPress={handleUpdate} />
-  //       </View>
-  //     </Modal>
-  //   );
-  // }
+  }
 
   return (
     
@@ -101,7 +57,7 @@ const DataView = () => {
       
     <FlatList
       data={data}
-      keyExtractor={(item) => item.id}
+      keyExtractor={(item) => item.id.toString()}
       
       renderItem={({ item }) => (
 
@@ -116,15 +72,15 @@ const DataView = () => {
           </Card.Content>
           <Card.Actions>
             <Ionicons
-              name="create-sharp"
+              name="create"
               size={30}
-              //title={uploading ? 'Uploading ...' : 'Uploaded'}
-              //onPress={() =>DelData()}
+              
+              onPress={() =>router.push('/addJournal')}
               color='green'
               
               />
           <Ionicons
-              name="archive-sharp"
+              name="archive"
               size={30}
               //title={uploading ? 'Uploading ...' : 'Uploaded'}
               onPress={() =>DelData(item)}
@@ -134,7 +90,7 @@ const DataView = () => {
               <Ionicons
               name="pencil-sharp"
               size={30}
-              onPress={() => EditData(item)}
+              onPress={() => Editer(item)}
               color="blue"
               />
               
@@ -148,5 +104,29 @@ const DataView = () => {
     </ThemedView>
   );
 };
+
+
+const styles = StyleSheet.create({
+  container: {
+    marginTop: 40,
+    padding: 12,
+    
+  },
+  header: {
+    backgroundColor: '#00BFFF',
+    height: 200,
+  },
+  verticallySpaced: {
+    paddingTop: 4,
+    paddingBottom: 4,
+    alignSelf: 'stretch',
+  },
+  mt20: {
+    marginTop: 20,
+  },
+  btn:{
+    borderRadius:30,
+  }
+})
 
 export default DataView;

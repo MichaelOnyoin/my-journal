@@ -79,6 +79,14 @@ export default function Layout() {
           drawerIcon: ({color, focused}) => ( <Ionicons name={focused ? 'albums' : 'albums-outline'} color={color} /> ),
           }} 
           />
+        <Drawer.Screen
+          name="update" // This is the name of the page and must match the url from root
+          options={{
+          drawerLabel: 'Updates',
+          title: 'Editing Journals',
+          drawerIcon: ({color, focused}) => ( <Ionicons name={focused ? 'book' : 'book-outline'} color={color} /> ),
+          }} 
+          />
 
         
       </Drawer>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { supabase } from '@/backend/supabase'
-import { StyleSheet, View, Alert,FlatList,Text,ScrollView } from 'react-native'
+import { StyleSheet, View, Alert,FlatList,Text,ScrollView, Touchable } from 'react-native'
 import { Card, Title, Paragraph } from 'react-native-paper';
 import { Button, Input } from '@rneui/themed'
 
@@ -10,6 +10,7 @@ import { router } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import  Avatar  from '@/components/Avatar';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default function Account() {
   const [loading, setLoading] = useState(true)
@@ -90,15 +91,16 @@ export default function Account() {
       }
 
       const { error } = await supabase.from('Users').update({ 'username': username,'password':password,'avatar_url':avatar_url }).eq('email',email).select()
-
+        
       if (error) {
         throw error
-      }
+      }else{Alert.alert('Profile Updated')}
     } catch (error) {
       if (error instanceof Error) {
         Alert.alert(error.message)
-      }
-      if(!error){Alert.alert('Profile Updated!');}
+      }else{ Alert.alert('Profile Updated')}
+
+      //if(!error){Alert.alert('Profile Updated!');}
     } finally {
       setLoading(false)
     }
@@ -129,18 +131,18 @@ export default function Account() {
       <View style={[styles.verticallySpaced, styles.mt20]}>
         
         <Input value={'My Profile'}></Input>
-        {/* <Input label="Email" placeholder=''  /> */}
+        {/* <Input label="Email" placeholder={email}  /> */}
       </View>
       <View style={styles.verticallySpaced}>
         <Input label="Username" value={username || ''} onChangeText={(text) => setUsername(text)} />
       </View>
       <View style={styles.verticallySpaced}>
-      {/* <Input label="email" value={email}  />  */}
-        {/* <Input label="email" value={email || ''} onChangeText={(text) => setEmail(text)} /> */}
+      
       </View>
       <View style={styles.verticallySpaced}>
         <Input label="Password" value={password || ''}  onChangeText={(text) => setPassword(text)} />
       </View>
+      
       </Card>
       <View style={[styles.verticallySpaced, styles.mt20]}>
         <Button
@@ -150,30 +152,14 @@ export default function Account() {
         />
       </View>
 
-      <View style={styles.verticallySpaced}>
+      {/* <View style={styles.verticallySpaced}>
         <Button title="Sign Out" style={styles.btn} onPress={() => supabase.auth.refreshSession()} />
-      </View>
+      </View> */}
       <View style={styles.verticallySpaced}>
-        <Button title="Sign Out2"  onPress={() => router.replace('../(tabs)/')} />
+        <TouchableOpacity onPress={() => router.replace('../(tabs)/')}>Sign Out</TouchableOpacity>
+        {/* <Button title="Sign Out"  onPress={() => router.replace('../(tabs)/')} /> */}
       </View>
 
-
-      {/* <ThemedView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <ThemedText type='title'>Journal Entries</ThemedText>
-      <FlatList
-        data={journals}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-        <View>
-          <ThemedText type="subtitle">{item.id}</ThemedText>
-          <ThemedText type="subtitle">{item.title}</ThemedText>
-          <ThemedText type="subtitle">{item.content}</ThemedText>
-          <ThemedText type="subtitle">{item.category}</ThemedText> 
-        </View>
-        )}
-        
-      />
-    </ThemedView> */}
     </View>
     </ScrollView>
 
