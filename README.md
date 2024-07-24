@@ -90,12 +90,8 @@ let { data: Journals, error } = await supabase
 <img src="./assets/Screenshots/Screenshot_20240724-165041_Expo Go.jpg" width="300"><&nbsp;> <img src="./assets/Screenshots/Screenshot_20240724-165122_Expo Go.jpg" width="300"><&nbsp;>
 <img src="./assets/Screenshots/Screenshot_20240724-165131_Expo Go.jpg" width="300">
 
-<br>
-
 <img src="./assets/Screenshots/Screenshot_20240724-165146_Expo Go.jpg" width="300"><&nbsp;> <img src="./assets/Screenshots/Screenshot_20240724-165231_Expo Go.jpg" width="300"><&nbsp;>
 <img src="./assets/Screenshots/Screenshot_20240724-165312_Expo Go.jpg" width="300">
-
-<br>
 
 <img src="./assets/Screenshots/Screenshot_20240724-165319_Expo Go.jpg" width="300"><&nbsp;> <img src="./assets/Screenshots/Screenshot_20240724-165322_Expo Go.jpg" width="300"><&nbsp;>
 <img src="./assets/Screenshots/Screenshot_20240724-165327_Expo Go.jpg" width="300">
