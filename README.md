@@ -85,7 +85,8 @@ let { data: Journals, error } = await supabase
   .select('id')
 ![image](https://github.com/user-attachments/assets/e89fe858-1f80-4cfe-8ec2-7be6049b1068)
 
-
+## Screenshots
+<img src="./assets/Screenshots/Screenshot_20240724-165041_Expo Go.jpg" width="300"><&nbsp;> <img src="./assets/Screenshots/Screenshot_20240724-165122_Expo Go.jpg" width="300">
 
 
 ## Learn more
