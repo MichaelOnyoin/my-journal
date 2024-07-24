@@ -140,7 +140,7 @@ export default function Account() {
       
       </View>
       <View style={styles.verticallySpaced}>
-        <Input label="Password" value={password || ''}  onChangeText={(text) => setPassword(text)} />
+        <Input label="Password" value={password || ''} onChangeText={(text) => setPassword(text)} />
       </View>
       
       </Card>
@@ -156,8 +156,8 @@ export default function Account() {
         <Button title="Sign Out" style={styles.btn} onPress={() => supabase.auth.refreshSession()} />
       </View> */}
       <View style={styles.verticallySpaced}>
-        <TouchableOpacity onPress={() => router.replace('../(tabs)/')}>Sign Out</TouchableOpacity>
-        {/* <Button title="Sign Out"  onPress={() => router.replace('../(tabs)/')} /> */}
+        {/* <TouchableOpacity onPress={() => router.replace('../(tabs)/')}><Text>Sign Out</Text></TouchableOpacity> */}
+        <Button title="Sign Out"  onPress={() => router.replace('../(tabs)/')} />
       </View>
 
     </View>

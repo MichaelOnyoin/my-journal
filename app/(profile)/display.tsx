@@ -1,17 +1,25 @@
 import React from 'react';
-import { View, ActivityIndicator, FlatList,ScrollView,Alert, Modal,StyleSheet,TextInput } from 'react-native';
+import { View, ActivityIndicator, FlatList,Alert, StyleSheet,AppState } from 'react-native';
 import { Card, Text, Title, Paragraph} from 'react-native-paper';
 import { useFetchData } from './useFetchData';
 import { ThemedView } from '@/components/ThemedView';
-import ThemedCard from '@rneui/themed/dist/Card';
 import {ThemedText} from '@/components/ThemedText'
 import { Input, Button } from '@rneui/themed'
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useState, useEffect } from 'react';
 import { supabase } from '@/backend/supabase';
 import AsyncStorage from '@react-native-async-storage/async-storage'
-//import EditData from './editJournal'
+
 import { router } from 'expo-router';
+
+AppState.addEventListener('change', (state) => {
+  if (state === 'active') {
+    supabase.auth.startAutoRefresh()
+  } else {
+    supabase.auth.stopAutoRefresh()
+  }
+})
+
 
 const DataView = () => {
   
@@ -37,7 +45,7 @@ const DataView = () => {
           
           "Journal Entry Deleted ",
         );
-       useFetchData()
+       if (!loading) return useFetchData()
       }
     }catch(error){console.log('Errored');}  
 
@@ -79,20 +87,21 @@ const DataView = () => {
               color='green'
               
               />
-          <Ionicons
-              name="archive"
-              size={30}
-              //title={uploading ? 'Uploading ...' : 'Uploaded'}
-              onPress={() =>DelData(item)}
-              color='red'
-              
-              />
-              <Ionicons
+            <Ionicons
               name="pencil-sharp"
               size={30}
               onPress={() => Editer(item)}
               color="blue"
               />
+
+            <Ionicons
+              name="trash"
+              size={30}
+              onPress={() =>DelData(item)}
+              color='red'
+              
+              />
+              
               
           
           </Card.Actions>

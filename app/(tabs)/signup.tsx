@@ -4,6 +4,7 @@ import { supabase } from '../../backend/supabase'
 import { Button, Input } from '@rneui/themed'
 import { ThemedView } from '@/components/ThemedView'
 //import {Button as Button2} from 'react-native-rapi-ui'
+import { ThemedText } from '@/components/ThemedText';
 
 
 AppState.addEventListener('change', (state) => {
@@ -64,7 +65,7 @@ export default function Auth() {
           </View>
     <ThemedView style={styles.container}>
       <View style={[styles.verticallySpaced, styles.mt20]}>
-      <Text
+      {/* <Text
               
               style={{
                 alignSelf: "center",
@@ -74,7 +75,8 @@ export default function Auth() {
               
             >
               Sign Up
-            </Text>
+            </Text> */}
+            <ThemedText type="title" style={styles.title}>               Sign Up</ThemedText>
       <Input
           label="Username"
           leftIcon={{ type: 'font-awesome', name: 'user' }}
@@ -129,5 +131,9 @@ const styles = StyleSheet.create({
   },
   btn:{
     borderRadius:10,
+  },
+  title:{
+    //fontSize: 20,
+    alignItems:'center',
   }
 })

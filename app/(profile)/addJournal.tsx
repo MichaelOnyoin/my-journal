@@ -11,6 +11,7 @@ import { ThemedText, ThemedTextProps } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { Button, Input } from '@rneui/themed'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import {Picker} from '@react-native-picker/picker'
 
 export default function addJournalScreen(){
     const [title, setTitle] = useState('')
@@ -67,6 +68,13 @@ export default function addJournalScreen(){
       placeholder="Category" value={category} onChangeText={(text) => setCategory(text)}
       autoCapitalize={'none'}
        />
+       
+       <Picker >
+        <Picker.Item label="Category" value={category} />
+        <Picker.Item label="Personal" value="Personal" />
+        <Picker.Item label="Work" value="Work" />
+        <Picker.Item label="Travel" value="Travel" />
+       </Picker>
        {/* <Input 
        label="Date"
        placeholder="Date" value={''} onChangeText={(text) => setDate(text)}/> */}

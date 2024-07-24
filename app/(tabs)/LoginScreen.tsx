@@ -28,9 +28,8 @@ export default function Auth() {
     const { data, error } = await supabase
     .from('Users')
     .select('*')
-    
     .eq('email',email)
-    //.eq('password',password)
+    .like('password',password)
     .single()
     
 
@@ -86,7 +85,7 @@ export default function Auth() {
             >
               Login
             </Text> */}
-            <ThemedText type="title">Login</ThemedText>
+            <ThemedText type="title" style={{alignItems:'center'}}>                 Login</ThemedText>
       <Input
           label="Username"
           leftIcon={{ type: 'font-awesome', name: 'user' }}
@@ -150,5 +149,9 @@ const styles = StyleSheet.create({
   },
   btn:{
     borderRadius:10,
+  },
+  title:{
+    marginRight: 45,
+    alignItems:'center',
   }
 })
