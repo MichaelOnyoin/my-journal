@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import SummaryView from './summary';
+//import SummaryView from './Summary';
 import { supabase } from '@/backend/supabase';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Alert,View, Text,StyleSheet, FlatList } from 'react-native';
@@ -15,7 +15,7 @@ import {ThemedText} from '@/components/ThemedText'
 
 const JournalEntries = () => {
     const [journalEntries, setJournalEntries] = useState([]);
-    const [selectedPeriod, setSelectedPeriod] = useState('daily');
+    const [selectedPeriod, setSelectedPeriod] = useState('%2024-06-11%');
   
     useEffect(() => {
       const fetchJournalEntries = async () => {
@@ -25,10 +25,9 @@ const JournalEntries = () => {
         .select('*')
         .eq('user_email',email)
         .order('date', { ascending: true })
-        .in('date',['2024-07-01','2024-07-14'])
-        //.lt('date','%2024-08-01%')
-        //.limit(10)
-        //
+        //.gt('date','%2024-07-01%')
+        .gt('date',selectedPeriod)
+        
         setJournalEntries(journalEntries);
 
         if (error) {
@@ -56,13 +55,14 @@ const JournalEntries = () => {
       <Text style={styles.header}>Journal Entries</Text>
       <Picker
         selectedValue={selectedPeriod}
+        //selectedValue={value}
         onValueChange={handlePeriodChange}
       >
-       <Picker.Item label="Daily" value="daily" />
-       <Picker.Item label="Weekly" value="weekly" />
-       <Picker.Item label="Monthly" value="monthly" />
+       <Picker.Item label="Daily"  value={('%2024-07-21%')} />
+       <Picker.Item label="Weekly" value={"%2024-07-10%"} />
+       <Picker.Item label="Monthly" value={"%2024-06-01%"} />
       </Picker>
-      {/* <SummaryView journalEntries={journalEntries} selectedPeriod={selectedPeriod} /> */}
+      
       <ThemedView>
       
     <FlatList

@@ -12,13 +12,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import { router } from 'expo-router';
 
-AppState.addEventListener('change', (state) => {
-  if (state === 'active') {
-    supabase.auth.startAutoRefresh()
-  } else {
-    supabase.auth.stopAutoRefresh()
-  }
-})
 
 
 const DataView = () => {
@@ -45,7 +38,8 @@ const DataView = () => {
           
           "Journal Entry Deleted ",
         );
-       if (!loading) return useFetchData()
+        router.push('/display')
+       
       }
     }catch(error){console.log('Errored');}  
 
@@ -84,21 +78,21 @@ const DataView = () => {
               size={30}
               
               onPress={() =>router.push('/addJournal')}
-              color='green'
+              color='#32de84' //android green
               
               />
             <Ionicons
               name="pencil-sharp"
               size={30}
               onPress={() => Editer(item)}
-              color="blue"
+              color="#007FFF"  //azure
               />
 
             <Ionicons
               name="trash"
               size={30}
               onPress={() =>DelData(item)}
-              color='red'
+              color='#FF033E' //american rose
               
               />
               

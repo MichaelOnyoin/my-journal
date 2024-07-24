@@ -23,12 +23,12 @@ export default function HomeScreen() {
       <ThemedView style={styles.stepContainer}>
         <ThemedText type="subtitle">This Mobile App is built using React-Native</ThemedText>
         <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
+         Create <ThemedText type="defaultSemiBold">New Journals</ThemedText> to and view them.
+          Edit{' '}
           <ThemedText type="defaultSemiBold">
-            {Platform.select({ ios: 'cmd + d', android: 'cmd + m' })}
+            {Platform.select({ ios: 'cmd + d', android: ' Your Journals' })}
           </ThemedText>{' '}
-          to open developer tools.
+          and view changes.
         </ThemedText>
       </ThemedView>
       <ThemedView style={styles.stepContainer}>
@@ -37,16 +37,7 @@ export default function HomeScreen() {
           Please interact with it.
         </ThemedText>
       </ThemedView>
-      {/* <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView> */}
+      
     </ParallaxScrollView>
   );
 }

@@ -5,6 +5,7 @@ import { Button, Input } from '@rneui/themed'
 import { ThemedView } from '@/components/ThemedView'
 //import {Button as Button2} from 'react-native-rapi-ui'
 import { ThemedText } from '@/components/ThemedText';
+import { create } from '@mui/material/styles/createTransitions'
 
 
 AppState.addEventListener('change', (state) => {
@@ -29,7 +30,7 @@ export default function Auth() {
     const { data, error } = await supabase
     .from('Users')
     .insert([
-    { username:username, email: email, password: password,  },
+    { username:username, email: email, password: password, created_at: new Date() },
     ])
     .select()
 
