@@ -67,21 +67,25 @@ npx expo start
 ## Backend Development: Was built using Supabase (supabase.com) 
 <code>
 import { createClient } from '@supabase/supabase-js'
-const supabaseUrl = 'https://ibqrwoqxvasaumckjnse.supabase.co'
+const supabaseUrl = ''
 const supabaseKey = process.env.SUPABASE_KEY
 const supabase = createClient(supabaseUrl, supabaseKey)
+</code>
 
-Users Table : 
+### Users Table : 
 let { data: Users, error } = await supabase
   .from('Users')
   .select('id')
-Journals
+![image](https://github.com/user-attachments/assets/8d3b4f68-9a43-434e-87af-74dcb3de73e0)
 
+  
+### Journals Table
 let { data: Journals, error } = await supabase
   .from('Journals')
   .select('id')
+![image](https://github.com/user-attachments/assets/e89fe858-1f80-4cfe-8ec2-7be6049b1068)
 
-</code>
+
 
 
 ## Learn more
