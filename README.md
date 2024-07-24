@@ -36,44 +36,57 @@ npm run reset-project
 This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
 
 
-Project Overview: Personal Journaling App
-Objective
-Create a mobile application and a backend service for personal journaling. Users
+# Project Overview: Personal Journaling App
+## Objective
+
+<p> Create a mobile application and a backend service for personal journaling. Users
 should be able to write journal entries, categorize them, and view a summary of
-their entries.
-Documentation 
+their entries.</p>
+
+## Documentation 
 Welcome to my-journal mobile app built using React-native and expo
-Step 1: Initialize App
+### Step 1: Initialize App
+```bash 
  npx create-expo-app  my-journal
-Step 2: Install Dependencies
-npm install 
-Step 3: Run app
+```
+### Step 2: Install Dependencies
+```bash
+npm install
+```
+### Step 3: Run app
+```bash
 npx expo start
-Step 4: Download Expo Go on App Stores
+```
+
+### Step 4: Download Expo Go on App Stores
  
-N.B: Scan the QR code above with Expo Go (Android) or the Camera app (iOS) 
-Step 5: Explore App
+<p> N.B: Scan the QR code above with Expo Go (Android) or the Camera app (iOS) </p>
 
+### Step 5: Explore App
 
-
-Backend Development: Was built using Supabase (supabase.com) 
-
+## Backend Development: Was built using Supabase (supabase.com) 
+<code>
 import { createClient } from '@supabase/supabase-js'
-const supabaseUrl = 'https://ibqrwoqxvasaumckjnse.supabase.co'
+const supabaseUrl = ''
 const supabaseKey = process.env.SUPABASE_KEY
 const supabase = createClient(supabaseUrl, supabaseKey)
+</code>
 
-Users Table : 
+### Users Table : 
 let { data: Users, error } = await supabase
   .from('Users')
   .select('id')
-Journals
+![image](https://github.com/user-attachments/assets/8d3b4f68-9a43-434e-87af-74dcb3de73e0)
 
+  
+### Journals Table
 let { data: Journals, error } = await supabase
   .from('Journals')
   .select('id')
+![image](https://github.com/user-attachments/assets/e89fe858-1f80-4cfe-8ec2-7be6049b1068)
 
-
+## Screenshots
+<img src="./assets/Screenshots/Screenshot_20240724-165041_Expo Go.jpg" width="300"><&nbsp;> <img src="./assets/Screenshots/Screenshot_20240724-165122_Expo Go.jpg" width="300">
 
 
 ## Learn more
