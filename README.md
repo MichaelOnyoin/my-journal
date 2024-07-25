@@ -96,6 +96,11 @@ let { data: Journals, error } = await supabase
 <img src="./assets/Screenshots/Screenshot_20240724-165319_Expo Go.jpg" width="300"><&nbsp;> <img src="./assets/Screenshots/Screenshot_20240724-165322_Expo Go.jpg" width="300"><&nbsp;>
 <img src="./assets/Screenshots/Screenshot_20240724-165327_Expo Go.jpg" width="300">
 
+## Demo Videos
+
+[![Watch the Demo Video](Thumbnail.jpg)](https://files.fm/u/84qbrr3wvt)
+
+<img src="./Demo-Vids/ezgif-supabase.gif" width="600" height="350" >
 
 ## Learn more
 
