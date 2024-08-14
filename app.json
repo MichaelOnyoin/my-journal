@@ -13,7 +13,8 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.anonymous.myjournal"
     },
     "android": {
       "adaptiveIcon": {
@@ -32,6 +33,15 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "12141fd8-6f42-470c-8a5a-6f8115375a6b"
+      }
+    },
+    "owner": "onyoin"
   }
 }
